@@ -1,0 +1,35 @@
+name: OpsMonitor CI
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build Docker Images
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build backend image
+        run: |
+          docker build \
+            -t opsmonitor-backend:${{ github.sha }} \
+            ./backend
+
+      - name: Build frontend image
+        run: |
+          docker build \
+            -t opsmonitor-frontend:${{ github.sha }} \
+            ./frontend
+
+      - name: Verify Docker images
+        run: |
+          docker images | grep opsmonitor
