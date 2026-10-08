@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-canvas: #000000;
+    --border-hairline: #292D30;
+    --text-primary: #FFFFFF;
+    --text-body: #F0F0F0;
+    --text-muted: #A1A4A5;
+    --text-secondary-muted: #ABAFB4;
+    --text-subtle: #6E727A;
+    --accent-violet: #9281F7;
+    --accent-violet-light: #BAA7FF;
+    --signal-blue: #3B9EFF;
+    --sky-blue: #70B8FF;
+    --status-success: #3AD389;
+    --status-warning: #FFCA16;
+    --status-error: #FF9592;
+    --status-critical: #FF6465;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #000000;
+    color: #FFFFFF;
+    overflow-x: hidden;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+}
+
+/* Minimal pure black scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #292D30;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4B5158;
+}
+
+/* Minimal status pulse without glowing halo */
+@keyframes pulse-dot-clean {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.animate-pulse-live {
+  animation: pulse-dot-clean 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Resend / Developer Infrastructure Console Cards */
+.ops-card {
+  background-color: #000000;
+  border: 1px solid #292D30;
+  border-radius: 16px;
+  transition: border-color 0.15s ease-out;
+}
+
+.ops-card:hover {
+  border-color: #4B5158;
+}
+
+.ops-panel {
+  background-color: #000000;
+  border: 1px solid #292D30;
+  border-radius: 24px;
+}
+
+/* Ghost Button signature style */
+.btn-ghost {
+  background-color: transparent;
+  border: 1px solid #292D30;
+  color: #FFFFFF;
+  border-radius: 6px;
+  transition: all 0.15s ease-out;
+}
+
+.btn-ghost:hover {
+  border-color: #FFFFFF;
+}
+
+.btn-ghost:active {
+  background-color: rgba(255, 255, 255, 0.05);
+}
