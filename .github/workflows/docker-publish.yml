@@ -1,3 +1,4 @@
+
 name: Build and Publish Docker Images
 
 on:
@@ -42,3 +43,12 @@ jobs:
           tags: |
             ghcr.io/kritisans25/opsmonitor-frontend:latest
             ghcr.io/kritisans25/opsmonitor-frontend:${{ github.sha }}
+
+      - name: Build and push telemetry agent image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./agent
+          push: true
+          tags: |
+            ghcr.io/kritisans25/opsmonitor-agent:latest
+            ghcr.io/kritisans25/opsmonitor-agent:${{ github.sha }}

@@ -25,6 +25,10 @@ export async function getServerStats() {
   const response = await fetch(`${API_BASE_URL}/api/server-stats`);
   return handleResponse(response);
 }
+export async function getContainers() {
+  const response = await fetch(`${API_BASE_URL}/api/containers`);
+  return handleResponse(response);
+}
 
 export async function getServerMetrics() {
   const response = await fetch(`${API_BASE_URL}/api/metrics`);

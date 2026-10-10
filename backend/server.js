@@ -12,6 +12,7 @@ const si = require("systeminformation");
 const connectDatabase = require("./config/database");
 const ApiMonitor = require("./models/apimonitor");
 const mongoose = require("mongoose");
+const axios = require("axios");
 const app = express();
 
 app.use(cors());
@@ -67,6 +68,27 @@ app.get("/api/server-stats", async (req, res) => {
 
         res.status(500).json({
             error: "Unable to retrieve server statistics"
+        });
+    }
+});
+app.get("/api/containers", async (req, res) => {
+    try {
+        const response = await axios.get(
+            "http://telemetry-agent:5001/containers",
+            {
+                timeout: 12000
+            }
+        );
+
+        res.json(response.data);
+    } catch (error) {
+        console.error(
+            "Error fetching Docker container telemetry:",
+            error.message
+        );
+
+        res.status(503).json({
+            error: "Container telemetry is temporarily unavailable"
         });
     }
 });
